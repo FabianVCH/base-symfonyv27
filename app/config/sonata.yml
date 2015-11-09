@@ -1,0 +1,49 @@
+fos_user:
+    db_driver: orm 
+    firewall_name: main
+    user_class: Application\Sonata\UserBundle\Entity\User
+    # registration:
+    #    form:
+    #        type: lumen_user_registration
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.user.block.menu: ~
+        sonata.user.block.account: ~
+        sonata.admin.block.search_result:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+            contexts: [admin]
+        lumen.sontaextends.extendsblock: ~
+
+sonata_user:
+    security_acl: true
+    manager_type: orm
+    admin:                  # Admin Classes
+        user:
+            controller:     ApplicationSonataUserBundle:UserAdmin
+
+sonata_admin:
+    title:      Komeeta
+    # title_logo: bundles/lumenapp/img/dummy.png
+    templates:
+        layout:  SonataAdminBundle::layout.html.twig
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+            - { position: right, type: lumen.sontaextends.extendsblock }
+
+sonata_admin:
+    dashboard:
+        groups:
+            User:
+                label: User
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                roles: [ROLE_SUPER_ADMIN]
+           

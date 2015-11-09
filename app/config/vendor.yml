@@ -1,0 +1,144 @@
+# knp_paginator:
+#     page_range: 5                      # default page range used in pagination control
+#     default_options:
+#         page_name: page                # page query parameter name
+#         sort_field_name: sort          # sort field query parameter name
+#         sort_direction_name: direction # sort direction query parameter name
+#         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+#     template:
+#         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+#         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+# ivory_ck_editor:
+#     default_config: default
+#     configs:
+#         default:
+#             filebrowserBrowseRoute: elfinder
+#             filebrowserBrowseRouteParameters: []
+
+# fm_elfinder:
+#     instances:
+#         default:
+#             locale: %locale% # defaults to current request locale
+#             editor: ckeditor # other options are tinymce, tinymce4, form, custom and simple
+#             fullscreen: true # defaults true, applies to simple and ckeditor editors
+#             theme: smoothness # jquery theme
+#             include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+#             connector:
+#                 debug: false # defaults to false
+#                 roots:       # at least one root must be defined
+#                     uploads:
+#                         show_hidden: false # defaults to false
+#                         driver: LocalFileSystem
+#                         path: uploads
+#                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+#                         upload_deny: ['all']
+#                         upload_max_size: 2M
+
+# deploy:
+#   prod:
+#     rsync-options: '-azC --force --delete --progress -h --checksum'
+#     host: my.destination.env
+#     dir: /path/to/project/root
+#     user: root
+#     port: 22
+#     timeout: 120 # Connection timeout in seconds. 0 for no timeout.
+#   uat:
+#     host: 192.168.1.10
+#     user: root2
+#     dir: /path/to/project/root
+#     port: 22022
+#     post_deploy_operations: 
+#         - app/console cache:clear --env=prod
+#         - app/console assets:install --env=prod
+#         - app/console assetic:dump --env=prod    
+
+# prezent_doctrine_translatable:
+#     fallback_locale: "%locale%"
+
+# liip_imagine:
+#     resolvers:
+#        default:
+#           web_path: ~
+
+#     filter_sets:
+#         cache: ~ // ruta donde desea guardar el thumb
+#         my_thumb:
+#             quality: 75
+#             filters:
+#                 thumbnail: { size: [120, 90], mode: outbound }
+
+
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Lumen\FosAuthBundle\Entity\Client
+    access_token_class:  Lumen\FosAuthBundle\Entity\AccessToken
+    refresh_token_class: Lumen\FosAuthBundle\Entity\RefreshToken
+    auth_code_class:     Lumen\FosAuthBundle\Entity\AuthCode
+#    service:
+#        fos_userbundle: fos_user.user_manager
+#        options:
+#            supported_scopes: user
+
+##################################################################
+#                                                                #
+#              SONATA EXTENDS BUNDLE CONFIGURATION               #
+#                                                                #
+##################################################################
+
+lumen_sonata_extends:
+    config:
+        groups:
+            ~
+#            Reportes:
+#                label: Reportes
+#                items:
+#                    'Bitacora':
+#                        actions:
+#                            show_bitacora:
+#                                routingType: 'local' # Utiliza una ruta del sistema
+#                                routing: 'home_bitacora'
+#                                label: 'Ver bitacora'
+#                                roles: []
+#                    'Algo':
+#                        actions:
+#                            show_algo:
+#                                routingType: 'external' # Utiliza una url absoluta custom.
+#                                routing: 'http://www.google.com'
+#                                label: 'Algo'
+#                                target: '_blank'
+#                                roles: []
+
+# Las rutas deben de tener el prefix "/admin" ya que te recuerdo que estamos dentro del contexto
+# de Sonata y el firewall del security requiere el prefix "/admin" para identificar la
+# seguridad del usuario actual. Ejemplo:
+#
+# lumen_bitacora:
+#     resource: "@LumenBitacoraBundle/Controller/"
+#     type:     annotation
+#     prefix:   /admin
+
+fos_rest:
+    routing_loader:
+        default_format: json
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: True
+    service:
+        serializer:     jms_serializer.serializer
+    serializer:
+        serialize_null: true
+
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d H:i:s" 
+    metadata:
+        auto_detection: true
+        
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }

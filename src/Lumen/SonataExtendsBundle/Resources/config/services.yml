@@ -1,0 +1,22 @@
+services:
+    lumen.sontaextends.extendsblock:
+        id: lumen.sontaextends.extendsblock
+        class: Lumen\SonataExtendsBundle\Block\ExtendsBlockService
+        arguments:
+            - @service_container
+            - lumen.sontaextends.extendsblock
+            - @templating
+        tags:
+            - { name: sonata.block }
+            
+    sonata.admin.lumen.extends.base:
+        class: Lumen\SonataExtendsBundle\Admin\FakeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "LumenExtendsBaseAdmin", label: "LumenExtendsBaseAdmin" }
+        arguments:
+            - ~
+            - Lumen\SonataExtendsBundle\Entity\FakeEntity
+            - ~
+        calls:
+            - [ setTranslationDomain, [LumenSonataExtendsBundle]]
+            

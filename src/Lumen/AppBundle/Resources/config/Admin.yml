@@ -1,0 +1,75 @@
+# app/config/services.yml
+
+# ...
+services:
+    sonata.admin.Cost:
+        class: Lumen\AppBundle\Admin\CostAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Cost, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Cost" ,label: Cost }
+            
+            
+    sonata.admin.Quote:
+        class: Lumen\AppBundle\Admin\QuoteAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Quote, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Quote" ,label: Quote }
+            
+    sonata.admin.QuoteDetail:
+        class: Lumen\AppBundle\Admin\QuoteDetailAdmin
+        arguments: [~, Lumen\AppBundle\Entity\QuoteDetail, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Quote" ,label: QuoteDetail }     
+            
+    sonata.admin.Client:
+        class: Lumen\AppBundle\Admin\ClientAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Client, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Client" ,label: Client } 
+            
+    sonata.admin.ClientContact:
+        class: Lumen\AppBundle\Admin\ClientContactAdmin
+        arguments: [~, Lumen\AppBundle\Entity\ContactClient, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Client" ,label: ClientContact }  
+    
+    sonata.admin.Project:
+        class: Lumen\AppBundle\Admin\ProjectAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Project, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Project" ,label: Project } 
+    
+    sonata.admin.Task:
+        class: Lumen\AppBundle\Admin\TaskAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Task, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Project" ,label: Task }   
+    sonata.admin.Team:
+        class: Lumen\AppBundle\Admin\TeamAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Team, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Project" ,label: Team }  
+            
+    sonata.admin.Employee:
+        class: Lumen\AppBundle\Admin\EmployeeAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Employee, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Project" ,label: Employee } 
+            
+    sonata.admin.LogBook:
+        class: Lumen\AppBundle\Admin\LogBookAdmin
+        arguments: [~, Lumen\AppBundle\Entity\LogBook, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "LogBook" ,label: LogBook }
+    
+    sonata.admin.Bill:
+        class: Lumen\AppBundle\Admin\BillAdmin
+        arguments: [~, Lumen\AppBundle\Entity\Bill, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Bill" ,label: Bill }     
+    
+    sonata.admin.HistoryBill:
+        class: Lumen\AppBundle\Admin\HistoryBillAdmin
+        arguments: [~, Lumen\AppBundle\Entity\HistoryBill, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Bill" ,label: HistoryBill } 

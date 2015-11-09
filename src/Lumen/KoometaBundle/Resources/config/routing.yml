@@ -1,0 +1,3 @@
+lumen_koometa_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LumenKoometaBundle:Default:index }
